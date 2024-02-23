@@ -1,12 +1,16 @@
 #include <iostream>
 using namespace std;
 // single linked list
-//  class node
-//  {
-//  public:
-//      int data;
-//      node *next;
-//  };
+
+ class node
+ {
+ public:
+     int data;
+     node *next;
+ };
+
+ 
+
 
 // doubled linked list
 // class node
