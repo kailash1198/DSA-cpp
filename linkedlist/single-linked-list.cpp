@@ -44,4 +44,5 @@ public:
 int main(void)
 {
     node obj1;
+    obj1.data=10;
 }
