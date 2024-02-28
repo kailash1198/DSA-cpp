@@ -7,43 +7,22 @@ public:
     node *next;
 };
 
-class nodeCreation: public node
-{
-public:
-    nodeCreation(int nodeNum)
-    {
-        node *ptr = new node();
-    }
-
-    void nodeData(int data){
-        
-    }
-};
-
 int main(void)
 {
-    // node *head = new node();
-    // node *one = new node();
-    // node *two = new node();
-    // node *three = new node();
-    // node *four = new node();
+    node *nodeObj[4];
 
-    nodeCreation nodeList(5);
-
-    one->data = 10;
-    two->data = 20;
-    three->data = 30;
-    four->data = 40;
-
-    one->next = two;
-    two->next = three;
-    three->next = four;
-    four->next = nullptr;
-
-    head = one;
-    while (head != nullptr)
+    for (int i = 0; i < 4; i++)
     {
-        cout << head->data << " ";
-        head = head->next;
+        nodeObj[i] = nullptr;
     }
+
+    for (int i = 0; i < 4; i++)
+    {
+        nodeObj[i] = new node();
+    }
+
+    nodeObj[1]->data = 10;
+    nodeObj[2]->data = 20;
+    nodeObj[3]->data = 20;
+    
 }
