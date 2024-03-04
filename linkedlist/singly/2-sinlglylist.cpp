@@ -47,13 +47,13 @@ public:
         node *current;
         current = head;
 
-        for (int i = 0; i < pos && current != nullptr; i++)
+        for (int i = 1; i < pos-1; i++)
         {
-            if (current)
-            {
-                current = current->next;
-            }
+
+            current = current->next;
         }
+        insertNewNode->next = current->next;
+        current->next = insertNewNode;
     }
     // Function - for display linked list
     void displayList()
@@ -74,6 +74,6 @@ int main(void)
     listOne.addingNode(300);
     listOne.addingNode(400);
     listOne.addingNode(500);
-    listOne.insertNodeSpecificPos(2, 900);
+    listOne.insertNodeSpecificPos(4, 900);
     listOne.displayList();
 }
