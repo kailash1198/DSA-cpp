@@ -25,6 +25,7 @@ public:
         tail = nullptr;
     }
 
+    // function for adding node
     void addNode(int num)
     {
         node *newNode = new node(num);
@@ -39,18 +40,21 @@ public:
             tail = newNode;
         }
     }
-
+    // Function for inserting element in specific position
     void insertion(int insertNum, int pos)
     {
         node *newNode = new node(insertNum);
-        node *temp = head;
-        for (int i = 1; i < pos; ++i)
+        node *current = head;
+
+        for (int i = 0; i < pos; i++)
         {
-            temp = temp->next;
+           current = head->next; 
         }
-        temp->next = newNode;
+        current->next = newNode;
+        
     }
 
+    // function for display list
     void displayList()
     {
         node *temp = head;
@@ -71,7 +75,7 @@ int main(void)
     listOne.addNode(4);
     listOne.addNode(5);
 
-    listOne.insertion(100, 1);
+    listOne.insertion(100, 3);
 
     listOne.displayList();
 }
