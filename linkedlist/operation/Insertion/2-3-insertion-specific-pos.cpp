@@ -41,16 +41,18 @@ public:
         }
     }
 
-    void insertNode(int pos, int dataValue){
+    void insertNode(int pos, int dataValue)
+    {
         node *newNode = new node(dataValue);
 
-        node*current = head;
-        for(int i=1; i<pos-1;i++){
+        node *current = head;
+        for (int i = 1; i < pos - 1; i++)
+        {
             current = current->next;
         }
 
         newNode->next = current->next;
-        current->next=newNode;
+        current->next = newNode;
     }
 
     void displayNode()
@@ -73,6 +75,6 @@ int main()
     one.addNode(4);
     one.addNode(5);
     one.addNode(6);
-one.insertNode(3,100);
+    one.insertNode(3, 100);
     one.displayNode();
 }
