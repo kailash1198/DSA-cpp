@@ -46,6 +46,7 @@ public:
     void nodeDeletion(int pos)
     {
         node *current = head;
+       
         for (int i = 1; i < pos - 1; i++)
         {
             current = current->next;
