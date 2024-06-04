@@ -4,10 +4,12 @@ class node
 {
 public:
     int data;
+    node *prev;
     node *next;
-    node(int dataValue)
+    node(int nodeValue)
     {
-        data = dataValue;
+        data = nodeValue;
+        prev = nullptr;
         next = nullptr;
     }
 };
@@ -16,11 +18,13 @@ class linkedList
 {
 private:
     node *head;
+    node *tail;
 
 public:
     linkedList()
     {
         head = nullptr;
+        tail = nullptr;
     }
 
     void addNode(int nodeValue)
@@ -29,45 +33,39 @@ public:
         if (head == nullptr)
         {
             head = newNode;
-            head->next = head;
+            tail = newNode;
         }
         else
         {
-            node *current = head;
-
-            while (current->next != head)
-            {
-                current = current->next;
-            }
-            current->next = newNode;
-            newNode->next = head;
-            // head=newNode;
+            tail->next = newNode;
+            newNode->prev = tail;
+            tail = newNode;
         }
     }
 
-    void displayList()
+    void displayNode()
     {
         node *current = head;
-        do
+        while (current != nullptr)
         {
-            /* code */
             cout << current->data << endl;
             current = current->next;
-        } while (current != head);
+        }
     }
 
-    void insertionNode(int pos, int nodeValue)
+    void insertion(int pos, int nodeValue)
     {
-        node *newNode = new node(nodeValue);
         node *current = head;
+        node *newNode = new node(nodeValue);
 
         for (int i = 0; i < pos - 1; i++)
         {
             current = current->next;
         }
-
         newNode->next = current->next;
+        current->next->prev = newNode;
         current->next = newNode;
+        newNode->prev = current;
     }
 };
 
@@ -79,9 +77,10 @@ int main()
     listOne.addNode(3);
     listOne.addNode(4);
     listOne.addNode(5);
+    listOne.addNode(6);
 
-    listOne.insertionNode(2, 10);
+    listOne.insertion(2, 100);
 
-    listOne.displayList();
+    listOne.displayNode();
     return 0;
 }

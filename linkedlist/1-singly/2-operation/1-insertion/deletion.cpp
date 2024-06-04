@@ -5,9 +5,9 @@ class node
 public:
     int data;
     node *next;
-    node(int dataValue)
+    node(int nodeValue)
     {
-        data = dataValue;
+        data = nodeValue;
         next = nullptr;
     }
 };
@@ -16,11 +16,13 @@ class linkedList
 {
 private:
     node *head;
+    node *tail;
 
 public:
     linkedList()
     {
         head = nullptr;
+        tail = nullptr;
     }
 
     void addNode(int nodeValue)
@@ -29,45 +31,44 @@ public:
         if (head == nullptr)
         {
             head = newNode;
-            head->next = head;
+            tail = newNode;
         }
         else
         {
-            node *current = head;
-
-            while (current->next != head)
-            {
-                current = current->next;
-            }
-            current->next = newNode;
-            newNode->next = head;
-            // head=newNode;
+            tail->next = newNode;
+            tail = newNode;
         }
     }
 
     void displayList()
     {
         node *current = head;
-        do
+        while (current != nullptr)
         {
-            /* code */
             cout << current->data << endl;
             current = current->next;
-        } while (current != head);
+        }
     }
 
-    void insertionNode(int pos, int nodeValue)
+    void deletionFirst()
     {
-        node *newNode = new node(nodeValue);
         node *current = head;
+        head = current->next;
+        current = nullptr;
+        delete current;
+    }
 
-        for (int i = 0; i < pos - 1; i++)
-        {
-            current = current->next;
+    void deletionLast()
+    {
+        node *current = head;
+        while(current->next!=tail){
+            current=current->next;
         }
 
-        newNode->next = current->next;
-        current->next = newNode;
+        delete tail;
+        tail = current;
+        tail->next = nullptr;
+       
     }
 };
 
@@ -80,8 +81,10 @@ int main()
     listOne.addNode(4);
     listOne.addNode(5);
 
-    listOne.insertionNode(2, 10);
+    listOne.deletionFirst();
+    listOne.deletionLast();
 
     listOne.displayList();
+
     return 0;
 }
